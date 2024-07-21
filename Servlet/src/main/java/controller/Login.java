@@ -37,18 +37,22 @@ public class Login extends HttpServlet {
 		String tenDangNhap = request.getParameter("tenDangNhap");
 		String matKhau = request.getParameter("matKhau");
 
-		// String url ="";
+		 String url ="";
 		if (tenDangNhap.equalsIgnoreCase("admin") && matKhau.equals("123")) {
-			// url = "/success.jsp";
-			response.sendRedirect("success.jsp");
+			url = "/success.jsp";
+			//response.sendRedirect("success.jsp");
 
 		} else {
-			// url = "/error.jsp";
-			response.sendRedirect("error.jsp");
-		}
+			//url = "/error.jsp";
+			
+			request.setAttribute("thongBao", "Đăng nhập thất bại do sai tên người dùng hoặc mật khẩu");
+			url = "/login.jsp";
 
-//		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-//		rd.forward(request, response);
+			//response.sendRedirect("error.jsp");
+		}
+		
+		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+		rd.forward(request, response);
 	}
 
 	/**
